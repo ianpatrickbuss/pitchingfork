@@ -84,7 +84,7 @@
 <main>
   <div>
     <article>
-      <header><img src="/soundcheck.svg" alt="logo" /></header>
+      <header><img src="/img/soundcheck.svg" alt="logo" /></header>
       <h3>Hey There!</h3>
       <p class="text-gray-700">
         Before we begin, let's make sure we don't blow out your ears.

@@ -66,7 +66,7 @@
 <main class="sm:max-w-lg">
   {#if setup}
     {#if qPage < questions.length}
-      <header><img src="/music.svg" alt="logo" /></header>
+      <header><img src="/img/music.svg" alt="logo" /></header>
       <Question
         page={[qPage, questions.length]}
         Hz={questions[qPage]}

@@ -36,7 +36,7 @@
 
 <header class="banner">
   <img
-    src={Math.round((baseCorrect / answers.length) * 100) === 100 ? '/succss.svg' : Math.round((baseCorrect / answers.length) * 100) > 70 ? '/good.svg' : '/needs_improvement.svg'}
+    src={Math.round((baseCorrect / answers.length) * 100) === 100 ? '/img/succss.svg' : Math.round((baseCorrect / answers.length) * 100) > 70 ? '/img/good.svg' : '/img/needs_improvement.svg'}
     alt="logo" />
 </header>
 <article>
