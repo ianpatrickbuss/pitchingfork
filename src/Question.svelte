@@ -50,7 +50,6 @@
 </script>
 
 <style lang="postcss">
-  @import "./lib/stylesheet.css";
   .question {
     @apply grid grid-cols-1;
   }

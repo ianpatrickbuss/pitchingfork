@@ -4,10 +4,12 @@
   import type { ScoreCardType } from "./app.type";
   // Components
   import Question from "./Question.svelte";
-  import ScoreCard from "./Results.svelte";
+  import QuizResults from "./Results.svelte";
   import Landing from "./Landing.svelte";
 
-  let q = 8;
+  import Tailwindcss from "./Tailwindcss.svelte";
+
+  let q = 2;
 
   // Store
   let questions = Array(q)
@@ -51,10 +53,6 @@
 </script>
 
 <style lang="postcss">
-  @import "tailwindcss/base";
-  @import "tailwindcss/components";
-  @import "tailwindcss/utilities";
-  @import "./lib/stylesheet.css";
   main {
     @apply mx-auto px-10 py-4;
   }
@@ -63,6 +61,7 @@
   }
 </style>
 
+<Tailwindcss />
 <main class="sm:max-w-lg">
   {#if setup}
     {#if qPage < questions.length}
@@ -72,7 +71,7 @@
         Hz={questions[qPage]}
         on:saveAnswer={updateAnswers} />
     {:else}
-      <ScoreCard {answers} />
+      <QuizResults {answers} />
       <footer class="grid col-gap-1 justify-center">
         <button class="btn red" on:click={resetQuiz}>Reset Quiz</button>
       </footer>

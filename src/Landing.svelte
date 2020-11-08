@@ -53,8 +53,6 @@
 </script>
 
 <style lang="postcss">
-  @import "./lib/stylesheet.css";
-
   .overlay {
     @apply fixed bg-gray-500 opacity-50 h-screen w-screen inset-0 z-10;
   }

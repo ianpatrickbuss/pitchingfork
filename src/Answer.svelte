@@ -13,7 +13,6 @@
 </script>
 
 <style lang="postcss">
-  @import "./lib/stylesheet.css";
   fieldset {
     @apply border rounded p-4 mt-3 mb-6;
   }
