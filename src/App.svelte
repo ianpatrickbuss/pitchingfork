@@ -9,7 +9,7 @@
 
   import Tailwindcss from "./Tailwindcss.svelte";
 
-  let q = 2;
+  let q = 8;
 
   // Store
   let questions = Array(q)
