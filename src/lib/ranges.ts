@@ -8,7 +8,7 @@ export const baseRange: {[key: string]: [number,number]} = {
 };
 
 export const subRange = (range: [number,number]): number[][] => {
-  let diff = Math.round((range[1],range[0])/5);
+  let diff = Math.round((range[1]-range[0])/5);
   return Array(5).fill(0).map((n,i) => {
     // [r0+d*i,r0+diff*(i+1)-1] -> eg [300,399]
     return [range[0]+diff *i,range[0] + diff * (i+1)-1]
