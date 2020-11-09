@@ -25,3 +25,8 @@ A small game designed to hone one's ability to hear tones.
 
 - This will show the results from the quizz w/ a tally &amp; percentage breakdown of both the base range questions and sub range (bonus) if attempted.
 - Each incorrect answer will allow the user to hear the sound again.
+
+### Change Log
+
+- 11/9/2020: Reimplemented Tailwind build process in rollup, Added a Radar chart from [chart.js](https://www.chartjs.org/) to Scorecard. Refactored the libraries slightly. Added github icon to bottom of Quiz. Added a mockdata library. Restructured components into related directories.
+- 11/7/2020: Released Working Draft: Simple Quiz no fancy buttons or whatnot.

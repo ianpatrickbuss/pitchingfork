@@ -1,14 +1,13 @@
 <script lang="ts">
-  import type { ScoreCardType } from "./app.type";
-  import { between } from "./lib/math.ts";
-  import { baseRange } from "./lib/ranges.ts";
-  import Sound from "./Sound.svelte";
+  import type { ScoreCardType } from "../app.type";
+  import { between } from "../lib/math.ts";
+  import { baseRange } from "../lib/ranges.ts";
+  import Sound from "../Sound.svelte";
   export let answer: ScoreCardType;
   export let key: number;
   let { Hz, baseAnswer, subAnswer } = answer;
   let baseCorrect = between(Hz, [...baseRange[baseAnswer]]);
   let subCorrect = subAnswer[0] ? between(Hz, [...subAnswer]) : null;
-
   let toggleSound = false;
 </script>
 

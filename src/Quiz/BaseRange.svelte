@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { baseRange } from "./lib/ranges.ts";
+  import { baseRange } from "../lib/ranges.ts";
   let options = Object.keys(baseRange);
   export let baseAnswer;
 </script>

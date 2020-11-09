@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { ScoreCardType } from "./app.type";
-  import { between } from "./lib/math.ts";
-  import { baseRange } from "./lib/ranges.ts";
+  import type { ScoreCardType } from "../app.type";
+  import { between } from "../lib/math.ts";
+  import { baseRange } from "../lib/ranges.ts";
   export let answers: ScoreCardType[];
   let baseCorrect = 0;
   let subCorrect = 0;
@@ -36,7 +36,7 @@
 
 <header class="banner">
   <img
-    src={Math.round((baseCorrect / answers.length) * 100) === 100 ? '/img/succss.svg' : Math.round((baseCorrect / answers.length) * 100) > 70 ? '/img/good.svg' : '/img/needs_improvement.svg'}
+    src={Math.round((baseCorrect / answers.length) * 100) === 100 ? '/img/success.svg' : Math.round((baseCorrect / answers.length) * 100) > 70 ? '/img/good.svg' : '/img/needs_improvement.svg'}
     alt="logo" />
 </header>
 <article>

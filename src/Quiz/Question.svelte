@@ -6,7 +6,7 @@
   // Components
   import BaseRange from "./BaseRange.svelte";
   import SubRange from "./SubRange.svelte";
-  import Sound from "./Sound.svelte";
+  import Sound from "../Sound.svelte";
 
   // "Exports"
   export let page: number[];

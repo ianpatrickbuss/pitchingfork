@@ -3,39 +3,24 @@
   import { randomRange } from "./lib/math.js";
   import type { ScoreCardType } from "./app.type";
   // Components
-  import Question from "./Question.svelte";
-  import QuizResults from "./Results.svelte";
+  import Question from "./Quiz/Question.svelte";
+  import QuizResults from "./ScoreCard/Layout.svelte";
   import Landing from "./Landing.svelte";
 
   import Tailwindcss from "./Tailwindcss.svelte";
 
+  // Counters
+  let qPage = 0;
   let q = 8;
+  let answers: ScoreCardType[] = Array(q).fill({});
 
   // Store
   let questions = Array(q)
     .fill(0)
     .map((n) => randomRange());
-  let answers: ScoreCardType[] = Array(q).fill({});
-
-  // // TODO: Build Unit Testing / Update to HMR
-  // let answers: ScoreCardType[] = [
-  //   {
-  //     Hz: 440,
-  //     baseAnswer: "Low Midrange",
-  //     subAnswer: [350, 399],
-  //   },
-  //   {
-  //     Hz: 500,
-  //     baseAnswer: "Upper Midrange",
-  //     subAnswer: [2000, 2399],
-  //   },
-  // ];
 
   // Toggles
   let setup = false;
-
-  // Counters
-  let qPage = 0;
 
   // Receive Component Event
   const updateAnswers = (event) => {
@@ -43,6 +28,7 @@
     qPage++;
   };
 
+  // Local Lambdas
   const resetQuiz = () => {
     questions = Array(q)
       .fill(0)
@@ -58,6 +44,17 @@
   }
   main header img {
     @apply object-contain h-32 w-full;
+  }
+  footer.socials {
+    @apply mt-10 pt-10 border-t-4 border-gray-200;
+  }
+  footer.socials img {
+    @apply object-contain h-24 w-full opacity-50;
+    filter: grayscale(80%);
+  }
+  footer.socials img:hover {
+    @apply opacity-100 cursor-pointer;
+    filter: grayscale(0%);
   }
 </style>
 
@@ -76,6 +73,13 @@
         <button class="btn red" on:click={resetQuiz}>Reset Quiz</button>
       </footer>
     {/if}
+    <footer class="socials">
+      <a
+        href="https://github.com/ianpatrickbuss/pitchingfork"
+        title="View the Github Repository">
+        <img src="/img/github.png" alt="Github" />
+      </a>
+    </footer>
   {/if}
 </main>
 {#if !setup}

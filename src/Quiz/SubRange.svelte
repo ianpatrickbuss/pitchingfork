@@ -1,16 +1,10 @@
 <script lang="ts">
   import { onDestroy } from "svelte";
-  import { baseRange } from "./lib/ranges.ts";
+  import { baseRange, subRange } from "../lib/ranges.ts";
   export let baseAnswer;
-  let diff;
   let subRanges;
-  let range;
   $: if (baseAnswer) {
-    range = baseRange[$baseAnswer];
-    diff = Math.round((range[1] - range[0]) / 5);
-    subRanges = Array(5)
-      .fill(0)
-      .map((n, i) => [range[0] + diff * i, range[0] + diff * (i + 1) - 1]);
+    subRanges = subRange(baseRange[$baseAnswer]);
     $subAnswer = [];
   }
   export let subAnswer;
