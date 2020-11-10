@@ -89,7 +89,7 @@
       </p>
       <ol>
         <li>Turn down the volume all the way</li>
-        <li>Play the sample sound</li>
+        <li>Press Start Sound Check</li>
         <li>
           Adjust your volume accordingly because this page randomly generates a
           frequency between 60Hz-20,000Hz.

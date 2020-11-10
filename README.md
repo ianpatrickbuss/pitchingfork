@@ -14,12 +14,7 @@ A small game designed to hone one's ability to hear tones.
 - The user will select what band they believe the sound falls in based off of a selection of ranges.
 - The user can also select, for a bonus point, a sub range that the frequency may fall within.
 
-### Components
-
-**Quiz:**
-
-- Provide either a specific frequency to select from
-- Provide a band of frequencies to select from
+### Componentsmy favorite stack overflow question is the one i asked that is incredio select from
 
 **ScoreCard:**
 
@@ -28,5 +23,6 @@ A small game designed to hone one's ability to hear tones.
 
 ### Change Log
 
+- 11/9/2020: Added a progress bar w/ tweening. Fixed a math error that would produce the wrong boundings of sub ranges. Added a x/y in the graph label. Added github, svelte, and tailwind svg logos. Adjusted the text on the landing page. Adjusted spacing of footer.
 - 11/9/2020: Reimplemented Tailwind build process in rollup, Added a Radar chart from [chart.js](https://www.chartjs.org/) to Scorecard. Refactored the libraries slightly. Added github icon to bottom of Quiz. Added a mockdata library. Restructured components into related directories.
 - 11/7/2020: Released Working Draft: Simple Quiz no fancy buttons or whatnot.

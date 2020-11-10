@@ -2,14 +2,13 @@ import type { ScoreCardType } from '../app.type';
 import {baseRange } from './ranges';
 import {between} from './math'
 
-export const baseRangeData = (answers: ScoreCardType[]): number[] => {
+export const baseRangeData = (answers: ScoreCardType[]): [number[],string[]] => {
 
   let calc: {
     [key: string]: number[];
   } = {};
 
   let data: number[] = [];
-
 
   for (let [key] of Object.entries(baseRange)) {
     calc[key] = [];
@@ -19,21 +18,22 @@ export const baseRangeData = (answers: ScoreCardType[]): number[] => {
     let val = between(Hz, baseRange[baseAnswer]) ? 1 : 0;
     calc[baseAnswer].push(val);
   }
+  let ratio: string[] = []
   for (let [key, value] of Object.entries(calc)) {
     let len = value.length;
     if (value.length > 0) {
-      let d = Math.round(
-        (value.reduce((acc, curr) => acc + curr) / len) * 100
-      );
+      let numCorrect = value.reduce((acc, curr) => acc + curr);
+      let d = Math.round((numCorrect / len) * 100);
+      ratio.push(`${numCorrect}/${len}`)
       data.push(d);
     } else {
       data.push(0);
     }
   }
-  return data;
+  return [data, ratio];
 }
 
-export const subRangeData = (answers: ScoreCardType[]): number[] => {
+export const subRangeData = (answers: ScoreCardType[]): [number[],string[]] => {
   let calc: {
     [key: string]: number[];
   } = {};
@@ -50,17 +50,20 @@ export const subRangeData = (answers: ScoreCardType[]): number[] => {
     let {Hz, baseAnswer, subAnswer} = answers[a];
     let val = between(Hz,[...subAnswer]) ? 1 : 0;
     calc[baseAnswer].push(val)
-  } 
+  }
+  let ratio: string[] = [];
   for (let [key, value] of Object.entries(calc)) {
     let len = value.length;
     if (value.length > 0) {
-      let d = Math.round(
-        (value.reduce((acc, curr) => acc + curr) / len) * 100
-      );
+      let numCorrect = value.reduce((acc, curr) => acc + curr);
+      let d = Math.round((numCorrect / len) * 100);
+      ratio.push(`${numCorrect}/${len}`)
       data.push(d);
     } else {
+      ratio.push(`0/${len}`)
       data.push(0);
     }
+
   }
-  return data;
+  return [data,ratio];
 }

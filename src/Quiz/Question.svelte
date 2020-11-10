@@ -7,13 +7,13 @@
   import BaseRange from "./BaseRange.svelte";
   import SubRange from "./SubRange.svelte";
   import Sound from "../Sound.svelte";
-
+  import ProgressBar from "./ProgressBar.svelte";
   // "Exports"
   export let page: number[];
   export let Hz: number;
 
   // Store
-  let baseAnswer = writable("Midrange");
+  let baseAnswer = writable("");
   let subAnswer = writable([]);
 
   // Event Dispatcher
@@ -72,7 +72,7 @@
   }
 
   .question footer {
-    @apply grid grid-cols-2 p-4;
+    @apply grid grid-cols-2 px-4 pt-4;
   }
 
   hr {
@@ -92,6 +92,7 @@
       {soundToggle ? 'Stop Sound' : 'Play Frequency'}
     </button>
   </header>
+  <ProgressBar len={page[1]} pos={page[0]} />
   <fieldset>
     <legend>
       Question
