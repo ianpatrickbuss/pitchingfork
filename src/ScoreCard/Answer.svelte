@@ -1,13 +1,13 @@
 <script lang="ts">
   import type { ScoreCardType } from "../app.type";
-  import { between } from "../lib/math.ts";
-  import { baseRange } from "../lib/ranges.ts";
+  import { between } from "../lib/math";
+  import { baseRange } from "../lib/ranges";
   import Sound from "../Sound.svelte";
   export let answer: ScoreCardType;
-  export let key: number;
+  export let borderClass: string;
   let { Hz, baseAnswer, subAnswer } = answer;
-  let baseCorrect = between(Hz, [...baseRange[baseAnswer]]);
-  let subCorrect = subAnswer[0] ? between(Hz, [...subAnswer]) : null;
+  let baseCorrect = between(Hz, baseRange[baseAnswer]);
+  let subCorrect = subAnswer[0] ? between(Hz, subAnswer) : null;
   let toggleSound = false;
 </script>
 
@@ -30,10 +30,13 @@
   span.incorrect {
     @apply text-red-700;
   }
+  fieldset.partial {
+    @apply border-yellow-700;
+  }
 </style>
 
-<fieldset class={baseCorrect ? 'correct' : 'incorrect'}>
-  <legend>Frequency #{key} - {Hz}</legend>
+<fieldset class={borderClass}>
+  <legend>Frequency #{answer.k + 1} - {Hz}</legend>
   <span class={baseCorrect ? 'correct' : 'incorrect'}>
     {baseCorrect ? '😀' : `😟`}
     Base Frequency Guess:
@@ -49,7 +52,7 @@
   {/if}
   <br />
   <div class="grid grid-cols-1">
-    {#if !baseCorrect || !subCorrect}
+    {#if !baseCorrect || subCorrect === false}
       <button
         class={'btn ' + (toggleSound ? 'active' : 'indigo')}
         on:click={() => (toggleSound = !toggleSound)}>

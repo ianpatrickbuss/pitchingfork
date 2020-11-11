@@ -1,9 +1,9 @@
 <script lang="ts">
   // Imports
   import { onMount } from "svelte";
-  import { baseRange } from "../lib/ranges.ts";
+  import { baseRange } from "../lib/ranges";
   import Chart from "chart.js";
-  import { baseRangeData, subRangeData } from "../lib/chart.ts";
+  import { baseRangeData, subRangeData } from "../lib/chart";
   // Types
   import type { ScoreCardType } from "../app.type";
   // For each range: determine the % of correct answers
@@ -44,6 +44,17 @@
               let idx = data[0].index;
               let ratio =
                 data[0].datasetIndex === 0 ? bR_data[1][idx] : sR_data[1][idx];
+              if (!ratio) {
+                console.log({
+                  data,
+                  ratio,
+                  idx,
+                  ranges: {
+                    bR: bR_data[1],
+                    sR: sR_data[1],
+                  },
+                });
+              }
               return `${labels[idx]} - ${ratio}`;
             },
             label: function (data) {
@@ -66,4 +77,11 @@
   onMount(createChart);
 </script>
 
-<canvas id="baseAnswersGraph" height="600" width="600" />
+<style lang="postcss">
+  canvas {
+    @apply w-full;
+    height: auto;
+  }
+</style>
+
+<canvas id="baseAnswersGraph" />

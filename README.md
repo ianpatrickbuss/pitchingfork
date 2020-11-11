@@ -23,6 +23,7 @@ A small game designed to hone one's ability to hear tones.
 
 ### Change Log
 
+- 11/11/2020: Fixed a bug w/ the radar graph that would result in incorrect labels. Categorized answers based off accuracy. Added responsive layout that enlarges reset button, makes a three column grid, adjusts the header image on screen size. Added scaffolding for CSV download. Added transitions to buttons, hover states. Fixed bundle size issue with Tailwind.
 - 11/9/2020: Added a progress bar w/ tweening. Fixed a math error that would produce the wrong boundings of sub ranges. Added a x/y in the graph label. Added github, svelte, and tailwind svg logos. Adjusted the text on the landing page. Adjusted spacing of footer.
 - 11/9/2020: Reimplemented Tailwind build process in rollup, Added a Radar chart from [chart.js](https://www.chartjs.org/) to Scorecard. Refactored the libraries slightly. Added github icon to bottom of Quiz. Added a mockdata library. Restructured components into related directories.
 - 11/7/2020: Released Working Draft: Simple Quiz no fancy buttons or whatnot.

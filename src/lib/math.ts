@@ -13,3 +13,5 @@ export const randomRange = ():number => {
   }
   return rand(2000,20000);
 }
+
+export const percentage = (number: number): string => `${Math.round(number * 100)}%`;

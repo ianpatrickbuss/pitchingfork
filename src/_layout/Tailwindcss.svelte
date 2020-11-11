@@ -1,10 +1,10 @@
-<style lang="postcss" global>
+<style global>
   @tailwind base;
   @tailwind components;
   @tailwind utilities;
 
   .btn {
-    @apply rounded p-3;
+    @apply rounded p-3 transition-all duration-200;
   }
 
   .btn.active,
@@ -12,12 +12,25 @@
     @apply bg-red-700 text-white;
   }
 
+  .btn.active:hover,
+  .btn.red:hover {
+    @apply bg-red-600;
+  }
+
   .btn.indigo {
     @apply bg-indigo-700 text-white;
   }
 
+  .btn.indigo:hover {
+    @apply bg-indigo-600 text-white;
+  }
+
   .btn.green {
     @apply bg-green-700 text-white;
+  }
+
+  .btn.green:hover {
+    @apply bg-green-600 text-white;
   }
 
   .btn.gr-blue {

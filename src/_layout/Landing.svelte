@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Sound from "./Sound.svelte";
-  import { rand } from "./lib/math.ts";
+  import Sound from "../Sound.svelte";
+  import { rand } from "../lib/math";
   import { createEventDispatcher } from "svelte";
 
   const dispatch = createEventDispatcher();
@@ -34,9 +34,11 @@
     "Mic check 9, mic check 5, Mic check pah, bah, pah, bah",
     "BINGO!  I got a piece of confetti!",
     "No you can't have a setlist",
+    "You know the band?  I know the band?  Do you think that makes you special?",
+    "",
   ];
   let testing = phrases[rand(0, phrases.length - 1)];
-  let interval;
+  let interval: NodeJS.Timeout;
   let checked = false;
   const soundCheck = () => {
     if (!soundToggle) {

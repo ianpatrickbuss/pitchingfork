@@ -5,15 +5,10 @@ module.exports = {
     defaultLineHeights: true,
     standardFontWeights: true,
   },
-  purge: [
-    './src/**/*.svelte',
-    './src/**/*.html',
-    './public/**/*.html',
-  ],
+  purge: ["./src/**/*.svelte", "./src/**/*.html", "./public/**/*.html"],
   theme: {
-    extend: {
-    },
+    extend: {},
   },
   variants: {},
   plugins: [],
-}
+};

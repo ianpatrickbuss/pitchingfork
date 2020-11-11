@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onDestroy } from "svelte";
-  import { baseRange, subRange } from "../lib/ranges.ts";
+  import { baseRange, subRange } from "../lib/ranges";
   export let baseAnswer;
   let subRanges;
   $: if (baseAnswer) {

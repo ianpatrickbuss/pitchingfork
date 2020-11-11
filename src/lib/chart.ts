@@ -1,6 +1,6 @@
 import type { ScoreCardType } from '../app.type';
-import {baseRange } from './ranges';
-import {between} from './math'
+import { baseRange } from './ranges';
+import { between } from './math'
 
 export const baseRangeData = (answers: ScoreCardType[]): [number[],string[]] => {
 
@@ -27,6 +27,7 @@ export const baseRangeData = (answers: ScoreCardType[]): [number[],string[]] => 
       ratio.push(`${numCorrect}/${len}`)
       data.push(d);
     } else {
+      ratio.push(`0/${len}`)
       data.push(0);
     }
   }
@@ -40,15 +41,15 @@ export const subRangeData = (answers: ScoreCardType[]): [number[],string[]] => {
 
   let data: number[] = [];
 
-
+  answers = answers.filter(({subAnswer}) => subAnswer[0]);
+  console.log({answers})
   for (let [key] of Object.entries(baseRange)) {
     calc[key] = [];
   }
 
   for (let a = 0; a < answers.length; a++) {
-
     let {Hz, baseAnswer, subAnswer} = answers[a];
-    let val = between(Hz,[...subAnswer]) ? 1 : 0;
+    let val = between(Hz,subAnswer) ? 1 : 0;
     calc[baseAnswer].push(val)
   }
   let ratio: string[] = [];
