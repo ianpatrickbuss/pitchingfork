@@ -26,7 +26,7 @@ A small game designed to hone one's ability to hear tones.
 
 ### Change Log
 
-- 11/11/2020: Fixed a bug where the bonus range would show on a new question if the user attempted a bonus on the previous question. Also set sound to stop upon submission of answer. Added the ability to download results as a CSV File. Fixed content error in README.MD. Added additional type definitions.
+- 11/11/2020: Added the ability to download results as a CSV File. Fixed a bug where the bonus range would show on a new question if the user attempted a bonus on the previous question. Also set sound to stop upon submission of answer if it was playing. Fixed content error in README.MD. Added additional type definitions.
 
 - 11/11/2020: Fixed a bug w/ the radar graph that would result in incorrect labels. Categorized answers based off accuracy. Added responsive layout that enlarges reset button, makes a three column grid, adjusts the header image on screen size. Added scaffolding for CSV download. Added transitions to buttons, hover states. Fixed bundle size issue with Tailwind.
 
