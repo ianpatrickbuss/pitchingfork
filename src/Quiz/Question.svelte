@@ -13,8 +13,8 @@
   export let Hz: number;
 
   // Store
-  let baseAnswer = writable("");
-  let subAnswer = writable([]);
+  let baseAnswer: SvelteStore<string> = writable("");
+  let subAnswer: SvelteStore<number[]> = writable([]);
 
   // Event Dispatcher
   const dispatch = createEventDispatcher();
@@ -24,6 +24,8 @@
       baseAnswer: $baseAnswer,
       subAnswer: $subAnswer,
     });
+    bonusActive = false;
+    soundToggle = false;
     $baseAnswer = "";
     $subAnswer = [];
   };

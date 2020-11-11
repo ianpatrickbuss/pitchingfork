@@ -11,10 +11,11 @@ type Range = string;
 type rangeMin = number;
 type rangeMax = number;
 type baseCorrect = boolean;
-type subCorrect = boolean;
+type subCorrect = boolean | string;
+type subAnswer = number[] | string;
 
 export type ScoreCSV = [RangesCSV[],AnswersCSV[]]
 export type RangesCSV = [Range,rangeMin,rangeMax];
-export type AnswersCSV = [Frequency,Range,rangeMin,rangeMax,baseCorrect,subCorrect];
+export type AnswersCSV = [Frequency,Range,subAnswer, baseCorrect,subCorrect];
 
 

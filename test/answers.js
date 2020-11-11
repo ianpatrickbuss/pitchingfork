@@ -1,5 +1,5 @@
 (() => {
-  const mockData = (n): ScoreCardType[] => {
+  const mockData = (n: number): ScoreCardType[] => {
     let c = 0;
     let data = [];
     while (c < n) {
@@ -21,4 +21,5 @@
   q = rand(10, 40);
   answers = mockData(q);
   qPage = q;
+  setup = true;
 })();

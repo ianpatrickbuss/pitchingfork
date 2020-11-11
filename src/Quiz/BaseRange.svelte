@@ -1,7 +1,7 @@
 <script lang="ts">
   import { baseRange } from "../lib/ranges";
   let options = Object.keys(baseRange);
-  export let baseAnswer;
+  export let baseAnswer: SvelteStore<string>;
 </script>
 
 {#each options as option, key}

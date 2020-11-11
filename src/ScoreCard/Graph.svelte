@@ -17,8 +17,8 @@
     let sR_data = subRangeData(answers);
 
     // Prep Data
-    var ctx = document.getElementById("baseAnswersGraph").getContext("2d");
-    var chart = new Chart(ctx, {
+    var ctx = document.getElementById("radarGraph").getContext("2d");
+    new Chart(ctx, {
       type: "radar",
       data: {
         labels,
@@ -44,17 +44,6 @@
               let idx = data[0].index;
               let ratio =
                 data[0].datasetIndex === 0 ? bR_data[1][idx] : sR_data[1][idx];
-              if (!ratio) {
-                console.log({
-                  data,
-                  ratio,
-                  idx,
-                  ranges: {
-                    bR: bR_data[1],
-                    sR: sR_data[1],
-                  },
-                });
-              }
               return `${labels[idx]} - ${ratio}`;
             },
             label: function (data) {
@@ -84,4 +73,4 @@
   }
 </style>
 
-<canvas id="baseAnswersGraph" />
+<canvas id="radarGraph" />

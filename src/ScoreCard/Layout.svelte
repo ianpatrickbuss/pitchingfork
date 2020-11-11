@@ -3,14 +3,17 @@
   import type { ScoreCardType } from "../app.type";
 
   // Imports
-  import { baseRange } from "../lib/ranges";
-  import { between, percentage } from "../lib/math";
+  import { baseCorrect, subCorrect } from "../lib/ranges";
+  import { percentage } from "../lib/math";
+  import { csvParser } from "../lib/csvParser";
 
   // Components
   import Answer from "./Answer.svelte";
   import ScoreCard from "./ScoreCard.svelte";
   import Graph from "./Graph.svelte";
   import ScoreCardHeader from "./Header.svelte";
+  import ResultsFooter from "./Footer.svelte";
+
   // Props
   export let answers: ScoreCardType[];
 
@@ -26,26 +29,35 @@
     let answer = answers[a];
     answer.k = a;
     let { Hz, baseAnswer, subAnswer } = answer;
-    let baseCorrect = between(Hz, baseRange[baseAnswer]);
+    let isBaseCorrect = baseCorrect(Hz, baseAnswer);
     if (!subAnswer[0]) {
-      if (baseCorrect) {
+      if (isBaseCorrect) {
         correct.push(answer);
       } else {
         incorrect.push(answer);
       }
     } else {
       subAttempted++;
-      let subCorrect: boolean = between(Hz, subAnswer);
-      if (baseCorrect && subCorrect) {
+      let isSubCorrect: boolean = subCorrect(Hz, subAnswer);
+      if (isBaseCorrect && isSubCorrect) {
         correct.push(answer);
-      } else if (baseCorrect && !subCorrect) {
-        console.log(answer);
+      } else if (isBaseCorrect && !isSubCorrect) {
         partial.push(answer);
-      } else if (!baseCorrect && !subCorrect) {
+      } else if (!isBaseCorrect && !isSubCorrect) {
         incorrect.push(answer);
       }
     }
   }
+
+  const downloadCSV = () => {
+    let data = csvParser(answers);
+    let encodedUri = encodeURI(data);
+    var link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "results.csv");
+    document.body.appendChild(link);
+    link.click();
+  };
 </script>
 
 <style lang="postcss">
@@ -73,7 +85,7 @@
           -
           {correct.length}/{answers.length}</span>
       </h3>
-      {#each correct as answer, key}
+      {#each correct as answer}
         <Answer {answer} borderClass="correct" />
       {/each}
     </div>
@@ -85,7 +97,7 @@
           -
           {partial.length}/{subAttempted}</span>
       </h3>
-      {#each partial as answer, key}
+      {#each partial as answer}
         <Answer {answer} borderClass="partial" />
       {/each}
     </div>
@@ -97,9 +109,10 @@
           -
           {incorrect.length}/{answers.length}</span>
       </h3>
-      {#each incorrect as answer, key}
+      {#each incorrect as answer}
         <Answer {answer} borderClass="incorrect" />
       {/each}
     </div>
   {/if}
 </section>
+<ResultsFooter on:resetQuiz on:downloadCSV={downloadCSV} />

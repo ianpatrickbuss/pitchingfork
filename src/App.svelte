@@ -1,9 +1,8 @@
 <script lang="ts">
-  // Imports
-  import { rand, randomRange } from "./lib/math.js";
-  import { baseRange, subRange } from "./lib/ranges.js";
+  // Types
   import type { ScoreCardType } from "./app.type";
-
+  // Imports
+  import { randomRange } from "./lib/math";
   // Components
   import Tailwindcss from "./_layout/Tailwindcss.svelte";
   import Landing from "./_layout/Landing.svelte";
@@ -28,7 +27,7 @@
   };
 
   // Local Lambdas
-  const resetQuiz = () => {
+  const resetQuiz = (): void => {
     questions = Array(q).fill(0).map(randomRange);
     answers = Array(q).fill({});
     qPage = 0;
@@ -41,12 +40,6 @@
   }
   main header img {
     @apply object-contain h-32 w-full;
-  }
-  footer.resetButton button {
-    @apply bg-red-700 rounded text-white block mb-4 text-center;
-  }
-  footer.resetButton button:hover {
-    @apply bg-red-600;
   }
 </style>
 
@@ -61,20 +54,7 @@
         Hz={questions[qPage]}
         on:saveAnswer={updateAnswers} />
     {:else}
-      <QuizResults {answers} />
-      <footer class="resetButton grid grid-cols-1 lg:flex lg:justify-center">
-        <button
-          class="p-3 text-xl font-semibold lg:px-16 lg:py-4  lg:text-lg lg:font-normal transition-all duration-200"
-          on:click={resetQuiz}>Reset Quiz</button>
-
-        <!-- <a
-          class="bg-green-700 p-3 text-xl font-semibold lg:px-16 lg:py-4 lg:w-full lg:text-lg lg:font-normal text-center"
-          href="#">
-          <svg viewBox="0 0 28 34" fill="#FFFFFF" class="h-8 block mx-auto">
-            <path d="M28 12h-8V0H8v12H0l14 14 14-14zM0 30v4h28v-4H0z" />
-          </svg>
-        </a> -->
-      </footer>
+      <QuizResults {answers} on:resetQuiz={resetQuiz} />
     {/if}
     <SiteFooter />
   {/if}

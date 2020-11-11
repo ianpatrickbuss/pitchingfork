@@ -34,16 +34,24 @@
   }
 
   .btn.gr-blue {
-    @apply from-blue-600 bg-gradient-to-tl to-blue-700 text-white;
+    @apply bg-gradient-to-tl from-blue-600  to-blue-700 text-white;
   }
-
+  .btn.gr-blue:hover {
+    @apply bg-gradient-to-br;
+  }
   .btn.gr-pink {
     @apply from-pink-600 bg-gradient-to-tl to-pink-700 text-white;
+  }
+  .btn.gr-pink:hover {
+    @apply bg-gradient-to-br;
   }
   .btn.gr-red {
     @apply from-red-800 to-red-700;
   }
   .btn.gr-indigo {
-    @apply from-indigo-600 to-indigo-700;
+    @apply from-indigo-600 to-indigo-700 bg-gradient-to-tl;
+  }
+  .btn.gr-indigo:hover {
+    @apply bg-gradient-to-br;
   }
 </style>

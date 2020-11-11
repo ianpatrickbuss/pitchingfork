@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onDestroy } from "svelte";
   import { baseRange, subRange } from "../lib/ranges";
-  export let baseAnswer;
-  let subRanges;
+  export let baseAnswer: SvelteStore<string>;
+  let subRanges: number[][];
   $: if (baseAnswer) {
     subRanges = subRange(baseRange[$baseAnswer]);
     $subAnswer = [];
