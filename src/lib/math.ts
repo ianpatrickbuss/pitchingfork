@@ -1,6 +1,5 @@
 export const rand = (min:number, max:number) => {
-  let r = Math.random() * max
-  return Math.round(r<min ? r+min : r);
+  return Math.round(Math.random() * (max-min) + min);
 };
 
 export const between = (val: number, comp: number[]): boolean => {
