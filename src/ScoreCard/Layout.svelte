@@ -8,12 +8,11 @@
   import { csvParser } from "../lib/csvParser";
 
   // Components
-  import Answer from "./Answer.svelte";
-  import ScoreCard from "./ScoreCard.svelte";
-  import Graph from "./Graph.svelte";
   import ScoreCardHeader from "./Header.svelte";
   import ResultsFooter from "./Footer.svelte";
-
+  import Answer from "./Answer.svelte";
+  import ScoreCard from "./ScoreCard.svelte";
+  import GraphLayout from "./GraphLayout.svelte";
   // Props
   export let answers: ScoreCardType[];
 
@@ -58,6 +57,7 @@
     document.body.appendChild(link);
     link.click();
   };
+  let x: number;
 </script>
 
 <style lang="postcss">
@@ -73,9 +73,14 @@
   }
 </style>
 
+<svelte:window bind:innerWidth={x} />
+
 <ScoreCardHeader answers={answers.length} baseCorrect={correct.length} />
-<Graph {answers} />
+<GraphLayout {answers} {correct} {incorrect} {partial} />
 <ScoreCard {answers} />
+{#if x < 640}
+  <ResultsFooter on:resetQuiz on:downloadCSV={downloadCSV} {x} />
+{/if}
 <hr />
 <section class="grid sm:grid-cols-1 lg:grid-cols-3 gap-4">
   {#if correct.length > 0}
@@ -115,4 +120,8 @@
     </div>
   {/if}
 </section>
-<ResultsFooter on:resetQuiz on:downloadCSV={downloadCSV} />
+{#if x > 640}
+  <ResultsFooter on:resetQuiz on:downloadCSV={downloadCSV} {x} />
+{:else}
+  <ResultsFooter on:resetQuiz {x} onlyReset={true} />
+{/if}
