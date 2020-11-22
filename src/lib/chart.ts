@@ -42,7 +42,6 @@ export const subRangeData = (answers: ScoreCardType[]): [number[],string[]] => {
   let data: number[] = [];
 
   answers = answers.filter(({subAnswer}) => subAnswer[0]);
-  console.log({answers})
   for (let [key] of Object.entries(baseRange)) {
     calc[key] = [];
   }
