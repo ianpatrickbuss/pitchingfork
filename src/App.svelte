@@ -2,23 +2,27 @@
   // Types
   import type { ScoreCardType } from "./app.type";
   // Imports
-  import { randomRange } from "./lib/math";
+  import { rand } from "./lib/math";
+  import { baseRange } from "./lib/ranges";
+
   // Components
   import Tailwindcss from "./_layout/Tailwindcss.svelte";
-  import Landing from "./_layout/Landing.svelte";
+  import Landing from "./Landing/Layout.svelte";
   import SiteFooter from "./_layout/Footer.svelte";
   import Question from "./Quiz/Question.svelte";
   import QuizResults from "./ScoreCard/Layout.svelte";
-  // Counters
-  let qPage = 0;
-  let q = 12;
-  let answers: ScoreCardType[] = Array(q).fill({});
 
-  // Store
-  let questions = Array(q).fill(0).map(randomRange);
+  // Counters
+  export let qPage = 0;
+  export let q = 12; // Number of questions
+
+  // Lists
+  export let answers: ScoreCardType[] = Array(q).fill({});
+  export let ranges: string[] = [];
+  export let questions: number[] = Array(q).fill(0);
 
   // Toggles
-  let setup = false;
+  export let setup = false;
 
   // Receive Component Event
   const updateAnswers = (event: { detail: any }) => {
@@ -26,9 +30,13 @@
     qPage++;
   };
 
-  // Local Lambdas
-  const resetQuiz = (): void => {
-    questions = Array(q).fill(0).map(randomRange);
+  const makeQuestions = ({ detail }: { detail: string[] }): void => {
+    ranges = detail;
+    questions = questions.map((n): number => {
+      let key = rand(0, ranges.length - 1);
+      let [min, max]: number[] = baseRange[ranges[key]];
+      return rand(min, max);
+    });
     answers = Array(q).fill({});
     qPage = 0;
   };
@@ -52,15 +60,20 @@
       <Question
         page={[qPage, q]}
         Hz={questions[qPage]}
+        {ranges}
         on:saveAnswer={updateAnswers} />
     {:else}
-      <QuizResults {answers} on:resetQuiz={resetQuiz} />
+      <QuizResults {answers} on:resetQuiz={makeQuestions} {ranges} />
     {/if}
     <SiteFooter />
   {/if}
 </main>
 {#if !setup}
   <div>
-    <Landing on:showtime={() => (setup = true)} />
+    <Landing
+      on:showtime={(e) => {
+        makeQuestions(e);
+        setup = true;
+      }} />
   </div>
 {/if}
