@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://pitchinfork.lvh.me/",
+  "experimentalComponentTesting": true,
+  "componentFolder": "src",
+  "testFiles": "**/*spec.ts"
+}
