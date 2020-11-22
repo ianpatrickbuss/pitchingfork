@@ -1,14 +1,14 @@
 import Question from './Question.svelte';
 import {mount} from 'cypress-svelte-unit-test';
-import {baseRange, subRange} from '../lib/ranges';
+import {baseRange, subRange, rangeKeys} from '../lib/ranges';
 import { rand } from '../lib/math';
-var ranges = Object.keys(baseRange);
+var ranges = rangeKeys;
 describe("Question: All Ranges Selected", () => {
   it("The user can play the frequency", () => {
     mount(Question, {
       props: {
         Hz: rand(0,600),
-        ranges: Object.keys(baseRange),
+        ranges: rangeKeys,
         page: [0,12]
       }
     })
@@ -32,7 +32,7 @@ describe("Question: All Ranges Selected", () => {
 });
 describe("Question: Some ranges selected", () => {
   let random = rand(2,ranges.length-1);
-  let localRanges = Object.keys(baseRange).slice(0,random);
+  let localRanges = rangeKeys.slice(0,random);
   it("When no range is selected then no subranges will show and the submitting is not possible and you cannot select a subrange", () => {
     mount(Question, {
       props: {
@@ -62,7 +62,7 @@ describe("Question: Some ranges selected", () => {
 for(let i = 0; i<8; i++) {
 describe("Question: When one Range is selected: (Take " + (i+1) + ")", () => {
     let selectedKey = rand(0,ranges.length-1)
-    let localRanges = Object.keys(baseRange).slice(selectedKey,selectedKey+1);
+    let localRanges = rangeKeys.slice(selectedKey,selectedKey+1);
     it("A user cannot submit answer if no answer is selected", () => {
       mount(Question, {
         props: {

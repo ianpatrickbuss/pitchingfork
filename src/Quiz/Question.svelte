@@ -8,13 +8,22 @@
   import SubRange from "./SubRange.svelte";
   import Sound from "../Sound.svelte";
   import ProgressBar from "./ProgressBar.svelte";
-  // "Exports"
+
+  // Props
   export let page: number[];
   export let Hz: number;
+  export let ranges: string[];
+  let specificRange: string | false = ranges.length === 1 ? ranges[0] : false;
 
   // Store
-  let baseAnswer: SvelteStore<string> = writable("");
+  let baseAnswer: SvelteStore<string> = writable(specificRange || "");
   let subAnswer: SvelteStore<number[]> = writable([]);
+
+  // Toggles
+  let bonusActive: boolean = specificRange ? true : false;
+  let subDisabled = true;
+  let hideBonus = true;
+  let soundToggle = false;
 
   // Event Dispatcher
   const dispatch = createEventDispatcher();
@@ -24,24 +33,19 @@
       baseAnswer: $baseAnswer,
       subAnswer: $subAnswer,
     });
-    bonusActive = false;
+    bonusActive = specificRange ? true : false;
     soundToggle = false;
-    $baseAnswer = "";
-    $subAnswer = [];
+    baseAnswer.set(specificRange || "");
+    subAnswer.set([]);
   };
 
-  // Toggles
-  let bonusActive = false;
-  let subDisabled = true;
-  let bonusDisabled = true;
-  let soundToggle = false;
-
   // Reactivity
-  $: if ($baseAnswer) {
-    bonusDisabled = false;
+  $: if ($baseAnswer && !specificRange) {
+    hideBonus = false;
   } else {
-    bonusDisabled = true;
+    hideBonus = true;
   }
+
   $: if ($baseAnswer && !bonusActive) {
     subDisabled = false;
   } else if ($baseAnswer && bonusActive && $subAnswer[0]) {
@@ -74,7 +78,7 @@
   }
 
   .question footer {
-    @apply grid grid-cols-2 px-4 pt-4;
+    @apply grid px-4 pt-4;
   }
 
   hr {
@@ -103,25 +107,29 @@
       {page[1]}
       ({$baseAnswer ? $baseAnswer : 'Pick an Answer!'})
     </legend>
-    <BaseRange {baseAnswer} />
+    {#if !specificRange}
+      <BaseRange {baseAnswer} {ranges} />
+    {/if}
     {#if bonusActive && $baseAnswer}
-      <hr />
+      {#if !specificRange}
+        <hr />
+      {/if}
       <b>Guess which band of {$baseAnswer}</b>
       <SubRange {baseAnswer} {subAnswer} />
     {/if}
   </fieldset>
-  <footer>
+  <footer class={`${specificRange ? 'grid-cols-1' : 'grid-cols-2'}`}>
     <div class="place-self-start">
-      {#if !bonusDisabled}
+      {#if !hideBonus}
         <button
           class="btn gr-pink"
           on:click={() => (bonusActive = !bonusActive)}
-          disabled={bonusDisabled}>
+          disabled={hideBonus}>
           {bonusActive ? 'Withdrawl Bonus' : 'Bonus Points!'}
         </button>
       {/if}
     </div>
-    <div class="place-self-end">
+    <div class={`${specificRange ? 'place-self-center' : 'place-self-end'}`}>
       {#if !subDisabled}
         <button
           class="btn gr-blue"
