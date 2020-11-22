@@ -1,6 +1,6 @@
 import Landing from './Layout.svelte';
 import {mount} from 'cypress-svelte-unit-test';
-import { baseRange} from '../lib/ranges';
+import { baseRange, rangeKeys} from '../lib/ranges';
 
 describe('Landing Page Tests', () => {
   it("Should contain a message and list of instructions with a button to click and soundcheck", () => {
@@ -15,7 +15,7 @@ describe('Landing Page Tests', () => {
     cy.get('#select-selectAll-range').should('not.have.attr','checked')
     cy.get('div.grid').contains('label','Select All Ranges').click();
     cy.get('footer').contains('button',`I'm Ready!`);
-    let ranges = Object.keys(baseRange);
+    let ranges = rangeKeys;
     cy.get('div.flex').children('label').should('have.length',6);
     cy.get('div.flex').children('label').each(($label,idx,$children) => {
       cy.get(`input#select-range-${idx}`).should('have.prop','checked')
