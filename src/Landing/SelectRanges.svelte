@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { range } from "cypress/types/lodash";
-
   import { createEventDispatcher } from "svelte";
   import { baseRange, rangeKeys } from "../lib/ranges";
 
