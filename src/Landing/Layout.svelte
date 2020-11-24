@@ -65,7 +65,9 @@
   {#if checked}
     <h3>Now Select A Range</h3>
     <p>Now select one or multiple frequency range(s) to be quizzed on!</p>
-    <div class="grid grid-cols-1 justify-center text-center">
+    <div
+      class="grid grid-cols-1 justify-center text-center"
+      id="modalBox-select-ranges">
       <SelectRanges on:updateRanges={updateSelectedRanges} />
     </div>
   {:else}
@@ -85,12 +87,14 @@
     class={`grid mt-4 justify-center text-center ${ranges[0] && !soundToggle ? 'grid-cols-2 gap-4' : 'grid-cols-1'}`}>
     <button
       class={'btn ' + (soundToggle ? 'active' : 'indigo')}
+      id="landing-soundcheck"
       on:click={soundCheck}>
       {soundToggle ? `"${testing}"` : checked ? 'Check Again' : 'Start Sound Check'}
     </button>
     {#if checked && !soundToggle}
       {#if ranges[0]}
-        <button class="btn green" on:click={showtime}>I'm Ready!</button>
+        <button id="landing-start" class="btn green" on:click={showtime}>I'm
+          Ready!</button>
       {/if}
     {/if}
   </footer>
