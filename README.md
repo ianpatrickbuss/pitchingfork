@@ -28,7 +28,7 @@ A small game designed to hone one's ability to hear tones.
 
 ### Change Log
 
-- 11/21/2020: Big update! Added the ability to select a specific range to practice with. Updated the results page the number of columns assigned to the grid are the number of different sets of results (correct, partial, incorrect).
+- 11/24/2020: Big update! Added the ability to select a specific range to practice with. Updated the results page the number of columns assigned to the grid are the number of different sets of results (correct, partial, incorrect). Added unit testing for various components to resolve a number of bugs.
 
 - 11/11/2020: Added the ability to download results as a CSV File. Fixed a bug where the bonus range would show on a new question if the user attempted a bonus on the previous question. Also set sound to stop upon submission of answer if it was playing. Fixed content error in README.MD. Added additional type definitions.
 
