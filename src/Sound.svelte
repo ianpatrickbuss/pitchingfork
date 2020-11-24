@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onDestroy } from "svelte";
   export let Hz: number;
-  var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  var audioCtx: AudioContext = new (window.AudioContext ||
+    window.webkitAudioContext)();
 
   // create Oscillator node
   var oscillator = audioCtx.createOscillator();

@@ -31,10 +31,13 @@
 <div
   class="overlay md:fixed md:bg-gray-500 md:opacity-50 md:h-screen md:w-screen md:inset-0 md:z-10"
   on:click={closeModal} />
-<main class="md:h-screen md:bg-transparent md:absolute md:z-20 md:inset-0">
+<main
+  class="md:h-screen md:bg-transparent md:absolute md:z-20 md:inset-0"
+  id="modalBox">
   <div class="fixed ">
     {#if hasClose}
       <button
+        id="modalBox-close"
         class="right-0 md:-mr-4 md:-mt-4 rounded-sm absolute border-gray-600 bg-red-700 text-white px-3 py-1"
         on:click={closeModal}>x</button>
     {/if}

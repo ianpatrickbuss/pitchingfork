@@ -4,7 +4,9 @@ A small game designed to hone one's ability to hear tones.
 
 ## Goals
 
-- [ ] Allow user to load previous questions to review progress
+- [ ] Allow user to load previous answers to review progress
+- [ ] Allow user to save data to an account
+- [x] Allow user to select which range(s) they want to be quizzed on
 - [x] Give user option to save data locally as CSV file
 - [x] Show a graphical breakdown of answers
 - [x] Implement a score feature
@@ -22,9 +24,11 @@ A small game designed to hone one's ability to hear tones.
 **ScoreCard:**
 
 - This will show the results from the quizz w/ a tally &amp; percentage breakdown of both the base range questions and sub range (bonus) if attempted.
-- Each incorrect answer will allow the user to hear the sound again.
+- Each incorrect answer will allow the user to hear the sound again.t
 
 ### Change Log
+
+- 11/21/2020: Big update! Added the ability to select a specific range to practice with. Updated the results page the number of columns assigned to the grid are the number of different sets of results (correct, partial, incorrect).
 
 - 11/11/2020: Added the ability to download results as a CSV File. Fixed a bug where the bonus range would show on a new question if the user attempted a bonus on the previous question. Also set sound to stop upon submission of answer if it was playing. Fixed content error in README.MD. Added additional type definitions.
 

@@ -2,5 +2,7 @@
   "baseUrl": "http://pitchinfork.lvh.me/",
   "experimentalComponentTesting": true,
   "componentFolder": "src",
-  "testFiles": "**/*spec.ts"
-}
+  "testFiles": ["**/*spec.ts","**/*test.js"],
+  "viewportWidth": 1280,
+  "viewportHeight": 720
+  }

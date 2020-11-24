@@ -52,9 +52,16 @@
 </style>
 
 <Tailwindcss />
-<main
-  class={qPage < questions.length ? 'sm:max-w-screen-sm' : 'sm:max-w-lg lg:max-w-screen-xl'}>
-  {#if setup}
+{#if !setup}
+  <Landing
+    on:showtime={(e) => {
+      makeQuestions(e);
+      setup = true;
+    }} />
+{:else}
+  <main
+    class={qPage < questions.length ? 'sm:max-w-screen-sm' : 'sm:max-w-lg lg:max-w-screen-xl'}
+    id="app-body">
     {#if qPage < questions.length}
       <header><img src="/img/music.svg" alt="logo" /></header>
       <Question
@@ -66,14 +73,5 @@
       <QuizResults {answers} on:resetQuiz={makeQuestions} {ranges} />
     {/if}
     <SiteFooter />
-  {/if}
-</main>
-{#if !setup}
-  <div>
-    <Landing
-      on:showtime={(e) => {
-        makeQuestions(e);
-        setup = true;
-      }} />
-  </div>
+  </main>
 {/if}
