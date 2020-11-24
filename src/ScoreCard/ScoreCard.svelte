@@ -1,19 +1,15 @@
 <script lang="ts">
+  // Types
   import type { ScoreCardType } from "../app.type";
-  import { between } from "../lib/math";
-  import { baseRange } from "../lib/ranges";
-  export let answers: ScoreCardType[];
-  let baseCorrect = 0;
-  let subCorrect = 0;
-  let subAttempted = 0;
-  for (let i = 0; i < answers.length; i++) {
-    let { baseAnswer, subAnswer, Hz } = answers[i];
-    baseCorrect += between(Hz, [...baseRange[baseAnswer]]) ? 1 : 0;
-    if (subAnswer[0]) {
-      subAttempted += 1;
-      subCorrect += between(Hz, [...subAnswer]) ? 1 : 0;
-    }
-  }
+  // Dependencies
+  import { percentage } from "../lib/math";
+  // Props
+  export let correct: ScoreCardType[];
+  export let incorrect: ScoreCardType[];
+  export let partial: ScoreCardType[];
+  export let subAttempted: number;
+  export let isSelectedRanges: boolean;
+  let total = [...correct, ...partial, ...incorrect].length;
 </script>
 
 <style lang="postcss">
@@ -32,24 +28,35 @@
 </style>
 
 <article>
-  <header>
-    {#if subAttempted}
-      <h4>
-        <span>Total</span>
-        {Math.round((baseCorrect / answers.length) * 100)}%
-        <span>{baseCorrect}/{answers.length}</span>
+  <header id="scorecard-header">
+    {#if isSelectedRanges || subAttempted === 0}
+      <!-- Selected Ranges -->
+      <h4 id="scorecard-header-total">
+        <span>Correct</span>
+        {percentage(correct.length / total)}
+        <span>{correct.length}/{total}</span>
       </h4>
       <div class="border-indigo-200 border-l-2" />
-      <h4>
-        <span>Bonus</span>
-        {Math.round((subCorrect / subAttempted) * 100)}%
-        <span>{subCorrect}/{subAttempted}</span>
+      <h4 id="scorecard-header-incorrect">
+        <span>Incorrect</span>
+        {percentage([...partial, ...incorrect].length / total)}
+        <span>{[...partial, ...incorrect].length}/{total}</span>
       </h4>
     {:else}
-      <h4>
-        {Math.round((baseCorrect / answers.length) * 100)}%
-        <span>{baseCorrect}/{answers.length}</span>
+      <!-- All Ranges -->
+      <h4 id="scorecard-header-total">
+        <span>Total</span>
+        {percentage(correct.length / total)}
+        <span>{correct.length}/{total}</span>
       </h4>
+      {#if subAttempted}
+        <div class="border-indigo-200 border-l-2" />
+        <h4 id="scorecard-header-bonus">
+          <span>Bonus</span>
+          {percentage(partial.length / subAttempted)}
+          <span>{partial.length}/{subAttempted}</span>
+        </h4>
+      {/if}
     {/if}
   </header>
 </article>

@@ -1,13 +1,24 @@
 <script lang="ts">
+  // Types
   import type { ScoreCardType } from "../app.type";
+
+  // Dependencies
   import { between } from "../lib/math";
   import { baseRange } from "../lib/ranges";
+
+  // Components
   import Sound from "../Sound.svelte";
+
+  // Props
   export let answer: ScoreCardType;
   export let borderClass: string;
+
+  // Local State
   let { Hz, baseAnswer, subAnswer } = answer;
   let baseCorrect = between(Hz, baseRange[baseAnswer]);
   let subCorrect = subAnswer[0] ? between(Hz, subAnswer) : null;
+
+  // Toggles
   let toggleSound = false;
 </script>
 
@@ -36,7 +47,7 @@
 </style>
 
 <fieldset class={borderClass}>
-  <legend>Frequency #{answer.k + 1} - {Hz}</legend>
+  <legend>Frequency #{answer.k + 1} - {Hz}Hz</legend>
   <span class={baseCorrect ? 'correct' : 'incorrect'}>
     {baseCorrect ? '😀' : `😟`}
     Base Frequency Guess:
@@ -50,9 +61,9 @@
       {`${subAnswer[0]}Hz-${subAnswer[1]}Hz`}
     </span>
   {/if}
-  <br />
-  <div class="grid grid-cols-1">
-    {#if !baseCorrect || subCorrect === false}
+  {#if !baseCorrect || subCorrect === false}
+    <br />
+    <div class="grid grid-cols-1">
       <button
         class={'btn ' + (toggleSound ? 'active' : 'indigo')}
         on:click={() => (toggleSound = !toggleSound)}>
@@ -61,6 +72,6 @@
       {#if toggleSound}
         <Sound {Hz} />
       {/if}
-    {/if}
-  </div>
+    </div>
+  {/if}
 </fieldset>

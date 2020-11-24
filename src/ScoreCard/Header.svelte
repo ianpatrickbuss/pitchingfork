@@ -7,12 +7,12 @@
   header {
     @apply flex justify-around;
   }
-  header.banner img {
+  header img {
     @apply object-contain  w-full;
   }
 </style>
 
-<header class="banner">
+<header>
   <img
     src={Math.round((baseCorrect / answers) * 100) === 100 ? '/img/success.svg' : Math.round((baseCorrect / answers) * 100) > 70 ? '/img/good.svg' : '/img/needs_improvement.svg'}
     class="h-32 lg:h-64"

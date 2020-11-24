@@ -1,23 +1,24 @@
 <script lang="ts">
-  // Imports
-  import { onMount } from "svelte";
-  import { baseRange } from "../lib/ranges";
-  import Chart from "chart.js";
-  import { baseRangeData, subRangeData } from "../lib/chart";
   // Types
   import type { ScoreCardType } from "../app.type";
-  // For each range: determine the % of correct answers
+  // Imports
+  import { onMount } from "svelte";
+  import { baseRange, rangeKeys } from "../lib/ranges";
+  import Chart from "chart.js";
+  import { baseRangeData, subRangeData } from "../lib/chart";
+
   // Props
   export let answers: ScoreCardType[];
 
   function createChart() {
-    let labels: string[] = Object.keys(baseRange);
+    let labels: string[] = rangeKeys;
 
     let bR_data = baseRangeData(answers);
     let sR_data = subRangeData(answers);
 
     // Prep Data
-    var ctx = document.getElementById("radarGraph").getContext("2d");
+    var canvas = document.getElementById("radarGraph");
+    var ctx = canvas.getContext("2d");
     new Chart(ctx, {
       type: "radar",
       data: {
