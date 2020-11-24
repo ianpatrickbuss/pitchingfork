@@ -42,6 +42,8 @@
   const updateSelectedRanges = (e) => {
     ranges = e.detail;
   };
+
+  let screenWidth: number;
 </script>
 
 <style lang="postcss">
@@ -60,14 +62,17 @@
   }
 </style>
 
+<svelte:window innerWidth={screenWidth} />
 <ModalBox>
-  <header><img src="/img/soundcheck.svg" alt="logo" /></header>
+  <header class={checked ? 'hidden lg:block' : ''}>
+    <img src="/img/soundcheck.svg" alt="logo" />
+  </header>
   {#if checked}
     <h3>Now Select A Range</h3>
     <p>Now select one or multiple frequency range(s) to be quizzed on!</p>
     <div
       class="grid grid-cols-1 justify-center text-center"
-      id="modalBox-select-ranges">
+      id="modalBox-select-ranges-container">
       <SelectRanges on:updateRanges={updateSelectedRanges} />
     </div>
   {:else}

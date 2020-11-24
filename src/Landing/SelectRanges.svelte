@@ -35,6 +35,8 @@
   $: {
     dispatch("updateRanges", selectedRanges);
   }
+
+  let textColors = ["text-green-700 lg:text-indigo-700", "text-gray-800"];
 </script>
 
 <style lang="postcss">
@@ -61,9 +63,13 @@
     on:input={handleCheck} />
   {selectAll ? 'Select Individual Ranges' : 'Select All Ranges'}
 </label>
-<div class="flex w-full flex-wrap justify-center py-4">
+<div
+  class="grid grid-cols-3 w-full justify-center py-4"
+  id="modalBox-select-ranges-grid">
   {#each ranges as range, key}
-    <label for={`select-range-${key}`} class={`m-2`}>
+    <label
+      for={`select-range-${key}`}
+      class={`m-2 ${selectedRanges.find((r) => r === range) ? textColors[0] : textColors[1]}`}>
       <input
         type="checkbox"
         name="select-range"
@@ -74,7 +80,9 @@
       {selectedRanges.find((r) => r === range) ? `🔊` : `🔇`}
       <br />
       {range}
-      <br />[{baseRange[range][0]}Hz-{baseRange[range][1]}Hz]
+      <br />
+      <span
+        class="text-sm text-gray-600">[{baseRange[range][0]}Hz-{baseRange[range][1]}Hz]</span>
     </label>
   {/each}
 </div>

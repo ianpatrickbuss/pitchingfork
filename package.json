@@ -5,7 +5,8 @@
     "build": "NODE_ENV=production rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public",
-    "validate": "svelte-check"
+    "validate": "svelte-check",
+    "test": "npx cypress open"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^15.0.0",
