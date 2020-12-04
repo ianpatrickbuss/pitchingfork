@@ -1,6 +1,6 @@
 <script lang="ts">
   // Types
-  import type { ScoreCardType } from "../app.type";
+  import type { AnswerType } from "../app.type";
   // Imports
   import { onMount } from "svelte";
   import { baseRange, rangeKeys } from "../lib/ranges";
@@ -8,7 +8,7 @@
   import { baseRangeData, subRangeData } from "../lib/chart";
 
   // Props
-  export let answers: ScoreCardType[];
+  export let answers: AnswerType[];
 
   function createChart() {
     let labels: string[] = rangeKeys;

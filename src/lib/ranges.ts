@@ -1,4 +1,4 @@
-import type { ScoreCardType, ScoreCardResults } from '../app.type';
+import type { AnswerType, ScoreCardResults } from '../app.type';
 import {between} from './math';
 export const baseRange: {[key: string]: [number,number]} = {
   Bass: [60, 249],
@@ -29,11 +29,11 @@ export const subCorrect = (Hz: number, subAnswer: number[]): boolean => {
   return between(Hz,subAnswer);
 }
 
-export const checkAnswers = (answers: ScoreCardType[]): ScoreCardResults => {
+export const checkAnswers = (answers: AnswerType[]): ScoreCardResults => {
   let subAttempted = 0;
-  let correct: ScoreCardType[] = [];
-  let partial: ScoreCardType[] = [];
-  let incorrect: ScoreCardType[] = [];
+  let correct: AnswerType[] = [];
+  let partial: AnswerType[] = [];
+  let incorrect: AnswerType[] = [];
   for (let a = 0; a < answers.length; a++) {
     let answer = answers[a];
     answer.k = a;

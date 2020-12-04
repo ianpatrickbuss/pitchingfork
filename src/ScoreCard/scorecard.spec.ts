@@ -1,5 +1,5 @@
 // Types
-import type { ScoreCardResults, ScoreCardType } from "../app.type";
+import type { ScoreCardResults, AnswerType } from "../app.type";
 // Components
 import Layout from './Layout.svelte';
 // Dependencies
@@ -9,7 +9,7 @@ import {baseRange, subRange, rangeKeys, checkAnswers} from '../lib/ranges';
 import {rand, percentage} from '../lib/math';
 
 
-const createAnswers = (n: number, ranges: string[], attemptSubRange: boolean = true): ScoreCardType[] => {
+const createAnswers = (n: number, ranges: string[], attemptSubRange: boolean = true): AnswerType[] => {
   let c = 0;
   let data = [];
   while (c < n) {

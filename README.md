@@ -1,9 +1,11 @@
-# Pitchfork
+# Pitchingfork
 
 A small game designed to hone one's ability to hear tones.
 
 ## Goals
 
+- [ ] Allow a user to select a custom sub range and convert to point system
+- [ ] Provide recommendations to user for what frequencies to practice next
 - [ ] Allow user to load previous answers to review progress
 - [ ] Allow user to save data to an account
 - [x] Allow user to select which range(s) they want to be quizzed on
@@ -19,14 +21,9 @@ A small game designed to hone one's ability to hear tones.
 - The user will select what band they believe the sound falls in based off of a selection of ranges.
 - The user can also select, for a bonus point, a sub range that the frequency may fall within.
 
-### Components
-
-**ScoreCard:**
-
-- This will show the results from the quizz w/ a tally &amp; percentage breakdown of both the base range questions and sub range (bonus) if attempted.
-- Each incorrect answer will allow the user to hear the sound again.t
-
 ### Change Log
+
+- 12/4/2020: Updated Type Definition. No changes to interactivity or functionality.
 
 - 11/24/2020: Big update! Added the ability to select a specific range to practice with. Updated the results page the number of columns assigned to the grid are the number of different sets of results (correct, partial, incorrect). Added unit testing for various components to resolve a number of bugs.
 

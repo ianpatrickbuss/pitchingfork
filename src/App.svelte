@@ -1,6 +1,6 @@
 <script lang="ts">
   // Types
-  import type { ScoreCardType } from "./app.type";
+  import type { AnswerType } from "./app.type";
   // Imports
   import { rand } from "./lib/math";
   import { baseRange } from "./lib/ranges";
@@ -17,7 +17,7 @@
   export let q = 12; // Number of questions
 
   // Lists
-  export let answers: ScoreCardType[] = Array(q).fill({});
+  export let answers: AnswerType[] = Array(q).fill({});
   export let ranges: string[] = [];
   export let questions: number[] = Array(q).fill(0);
 

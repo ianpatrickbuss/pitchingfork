@@ -1,16 +1,16 @@
-import type { AnswersCSV, ScoreCardType } from "../app.type";
+import type { AnswersCSV, AnswerType, RangesCSV } from "../app.type";
 import {baseRange, baseCorrect, subCorrect} from './ranges';
 
-export const csvParser = (answers: ScoreCardType[]): string => {
+export const csvParser = (answers: AnswerType[]): string => {
   // Ranges
   let rangeHeader = ['Range','Range Start','Range End']
-  let ranges = []
+  let ranges: RangesCSV[] = []
   for(const [key,val] of Object.entries(baseRange)){
     ranges.push([key,val[0],val[1]]);
   }
   // Answers
   let resultsHeader = ['Frequency (Hz)', 'Your Base Range Answer','Your Sub Range Answer','Base Correct','Sub Correct']
-  let results = [];
+  let results: AnswersCSV[] = [];
   for(let a = 0; a<answers.length; a++) {
     let {Hz, baseAnswer, subAnswer} = answers[a];
     let isSubCorrect: boolean | string;

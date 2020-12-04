@@ -1,6 +1,6 @@
 <script lang="ts">
   // Types
-  import type { ScoreCardType } from "../app.type";
+  import type { AnswerType } from "../app.type";
 
   // Dependencies
   import { between } from "../lib/math";
@@ -10,7 +10,7 @@
   import Sound from "../Sound.svelte";
 
   // Props
-  export let answer: ScoreCardType;
+  export let answer: AnswerType;
   export let borderClass: string;
 
   // Local State

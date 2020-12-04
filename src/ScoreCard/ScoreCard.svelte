@@ -1,12 +1,12 @@
 <script lang="ts">
   // Types
-  import type { ScoreCardType } from "../app.type";
+  import type { AnswerType } from "../app.type";
   // Dependencies
   import { percentage } from "../lib/math";
   // Props
-  export let correct: ScoreCardType[];
-  export let incorrect: ScoreCardType[];
-  export let partial: ScoreCardType[];
+  export let correct: AnswerType[];
+  export let incorrect: AnswerType[];
+  export let partial: AnswerType[];
   export let subAttempted: number;
   export let isSelectedRanges: boolean;
   let total = [...correct, ...partial, ...incorrect].length;

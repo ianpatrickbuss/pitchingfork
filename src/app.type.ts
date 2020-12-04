@@ -1,4 +1,4 @@
-export type ScoreCardType = {
+export type AnswerType = {
   Hz: number;
   baseAnswer: string;
   subAnswer: number[];
@@ -6,9 +6,9 @@ export type ScoreCardType = {
 }
 
 export type ScoreCardResults = {
-  correct: ScoreCardType[];
-  incorrect: ScoreCardType[];
-  partial: ScoreCardType[];
+  correct: AnswerType[];
+  incorrect: AnswerType[];
+  partial: AnswerType[];
   subAttempted: number;
 }
 
@@ -23,6 +23,6 @@ type baseCorrect = boolean;
 type subCorrect = boolean | string;
 type subAnswer = number[] | string;
 
-export type ScoreCSV = [RangesCSV[],AnswersCSV[]]
 export type RangesCSV = [Range,rangeMin,rangeMax];
 export type AnswersCSV = [Frequency,Range,subAnswer, baseCorrect,subCorrect];
+export type ScoreCSV = [RangesCSV[],AnswersCSV[]]

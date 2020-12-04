@@ -1,6 +1,6 @@
 <script lang="ts">
   // Types
-  import type { ScoreCardResults, ScoreCardType } from "../app.type";
+  import type { ScoreCardResults, AnswerType } from "../app.type";
 
   // Imports
   import { checkAnswers, rangeKeys } from "../lib/ranges";
@@ -13,7 +13,7 @@
   import Graph from "./Graph.svelte";
   import SetOfAnswers from "./SetOfAnswers.svelte";
   // Props
-  export let answers: ScoreCardType[];
+  export let answers: AnswerType[];
   export let ranges: string[];
 
   // Lists

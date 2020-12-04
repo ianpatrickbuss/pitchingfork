@@ -1,8 +1,8 @@
-import type { ScoreCardType } from '../app.type';
+import type { AnswerType } from '../app.type';
 import { baseRange } from './ranges';
 import { between } from './math'
 
-export const baseRangeData = (answers: ScoreCardType[]): [number[],string[]] => {
+export const baseRangeData = (answers: AnswerType[]): [number[],string[]] => {
 
   let calc: {
     [key: string]: number[];
@@ -34,7 +34,7 @@ export const baseRangeData = (answers: ScoreCardType[]): [number[],string[]] => 
   return [data, ratio];
 }
 
-export const subRangeData = (answers: ScoreCardType[]): [number[],string[]] => {
+export const subRangeData = (answers: AnswerType[]): [number[],string[]] => {
   let calc: {
     [key: string]: number[];
   } = {};

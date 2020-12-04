@@ -1,13 +1,13 @@
 <script lang="ts">
   // Types
-  import type { ScoreCardType } from "../app.type";
+  import type { AnswerType } from "../app.type";
   // Dependencies
   import { percentage } from "../lib/math";
   // Components
   import Answer from "./Answer.svelte";
 
   // Props
-  export let set: ScoreCardType[];
+  export let set: AnswerType[];
   export let classes: string[];
   export let answers: number;
   export let title: string;
