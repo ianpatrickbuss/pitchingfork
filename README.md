@@ -23,6 +23,8 @@ A small game designed to hone one's ability to hear tones.
 
 ### Change Log
 
+- 1/9/2020: Reverted changes to the oscillator that faded the sound in out. Certain devices would pop more severely.
+
 - 12/4/2020: Updated Type Definition. Added a fade in & fade out to the oscillator so it doesn't pop when toggled on/off.
 
 - 11/24/2020: Big update! Added the ability to select a specific range to practice with. Updated the results page the number of columns assigned to the grid are the number of different sets of results (correct, partial, incorrect). Added unit testing for various components to resolve a number of bugs.
