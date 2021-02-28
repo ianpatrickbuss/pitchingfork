@@ -70,7 +70,7 @@
         {toggleSound ? 'Stop Sound' : 'Play Sound'}
       </button>
       {#if toggleSound}
-        <Sound {Hz} />
+        <Sound {Hz} on:stop={() => toggleSound = false}/>
       {/if}
     </div>
   {/if}

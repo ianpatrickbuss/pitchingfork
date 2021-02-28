@@ -1,5 +1,5 @@
 import type { AnswerType, ScoreCardResults } from '../app.type';
-import {between} from './math';
+import {between, rand} from './math';
 export const baseRange: {[key: string]: [number,number]} = {
   Bass: [60, 249],
   "Low Midrange": [250, 499],
@@ -64,3 +64,22 @@ export const checkAnswers = (answers: AnswerType[]): ScoreCardResults => {
     subAttempted
   }
 }
+
+
+export const createAnswers = (n: number, ranges: string[], attemptSubRange: boolean = true): AnswerType[] => {
+  let c = 0;
+  let data = [];
+  while (c < n) {
+    let key = rand(0, ranges.length - 1);
+    let baseAnswer = ranges[key];
+    let real = rand(0, 20) < 17;
+    let Hz = real ? rand(...baseRange[baseAnswer]) : rand(60, 20000);
+    data.push({
+      Hz,
+      baseAnswer,
+      subAnswer: attemptSubRange ? subRange(baseRange[baseAnswer])[rand(0, 4)] : [],
+    });
+    c++;
+  }
+  return data;
+};

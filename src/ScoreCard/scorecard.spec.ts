@@ -5,27 +5,10 @@ import Layout from './Layout.svelte';
 // Dependencies
 import {mount} from 'cypress-svelte-unit-test';
 // Libs
-import {baseRange, subRange, rangeKeys, checkAnswers} from '../lib/ranges';
+import {rangeKeys, checkAnswers, createAnswers} from '../lib/ranges';
 import {rand, percentage} from '../lib/math';
 
 
-const createAnswers = (n: number, ranges: string[], attemptSubRange: boolean = true): AnswerType[] => {
-  let c = 0;
-  let data = [];
-  while (c < n) {
-    let key = rand(0, ranges.length - 1);
-    let baseAnswer = ranges[key];
-    let real = rand(0, 20) < 17;
-    let Hz = real ? rand(...baseRange[baseAnswer]) : rand(60, 20000);
-    data.push({
-      Hz,
-      baseAnswer,
-      subAnswer: attemptSubRange ? subRange(baseRange[baseAnswer])[rand(0, 4)] : [],
-    });
-    c++;
-  }
-  return data;
-};
 
 
 // Element Placement
@@ -245,7 +228,40 @@ describe("ScoreCard: Some Ranges", () => {
       cy.get("#scorecard-incorrect-answers").should('not.exist');
     }
   })
+
+  // Two Sounds Test
+  it("The UI should not allow for two sounds to be played at the same time", () => {
+    let selectedRangeIncorrectAnswers = [...partial,...incorrect];
+    if(selectedRangeIncorrectAnswers.length>0) {
+      cy.get("#scorecard-incorrect-answers").should('exist');
+      cy.get('#scorecard-incorrect-answers').children('fieldset').as('answers');
+      let prevSound: number;
+      cy.get('@answers').each(($answer, idx) => {
+        cy.wrap($answer).as('answer');
+        cy.get('@answer').contains('legend', `Frequency #${selectedRangeIncorrectAnswers[idx].k+1} - ${selectedRangeIncorrectAnswers[idx].Hz}`);
+        cy.get('@answer').children('div').contains('button','Play Sound').as('sound');
+        if(idx>0) {
+          cy.get('@answers').eq(prevSound).as('prevSound')
+          cy.get('@prevSound').children('div').contains('button', "Stop Sound")
+          cy.wait(200);
+          cy.get('@sound').click();
+          cy.wait(200);
+          cy.get('@prevSound').children('div').contains('button', "Play Sound")
+        } else {
+          cy.get('@sound').click();
+        }
+        prevSound = idx;
+        if(idx === selectedRangeIncorrectAnswers.length-1) {
+          cy.get('@sound').click();
+        }
+      })
+    } else {
+      cy.get("#scorecard-incorrect-answers").should('not.exist');
+    }
+  })
 })
+
+
 
 describe("ScoreCard: One Range", () => {
   let selectedKey = rand(0,rangeKeys.length-1)

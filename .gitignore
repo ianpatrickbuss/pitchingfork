@@ -4,3 +4,5 @@
 .vscode
 public/build
 cypress/videos
+amplify
+src/aws-exports.js

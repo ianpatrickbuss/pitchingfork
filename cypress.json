@@ -1,5 +1,5 @@
 {
-  "baseUrl": "http://pitchinfork.lvh.me/",
+  "baseUrl": "http://localhost:5000/",
   "experimentalComponentTesting": true,
   "componentFolder": "src",
   "testFiles": ["**/*spec.ts","**/*test.js"],

@@ -23,7 +23,9 @@ A small game designed to hone one's ability to hear tones.
 
 ### Change Log
 
-- 1/9/2020: Reverted changes to the oscillator that faded the sound in out. Certain devices would pop more severely.
+- 2/28/2021: Previously there was no limit to the amount of sounds that could play at one time.  Now only one sound can be played at the same time.
+
+- 1/9/2021: Reverted changes to the oscillator that faded the sound in out. Certain devices would pop more severely.
 
 - 12/4/2020: Updated Type Definition. Added a fade in & fade out to the oscillator so it doesn't pop when toggled on/off.
 
